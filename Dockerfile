@@ -12,6 +12,12 @@ RUN apk add --no-cache python3 alpine-sdk
 # Initialize a dummy git repository to bypass Cobalt's startup checks
 RUN git init && git config user.email "bot@railway.app" && git config user.name "Railway" && git commit --allow-empty -m "init bypass"
 
+RUN git init && \
+    git config user.email "bot@railway.app" && \
+    git config user.name "Railway" && \
+    git remote add origin https://github.com/H-A-R-E/cobalt.git && \
+    git commit --allow-empty -m "init bypass"
+
 RUN  pnpm install --frozen-lockfile
 
 RUN pnpm deploy --filter=@imput/cobalt-api --prod /prod/api
